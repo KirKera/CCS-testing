@@ -1,0 +1,456 @@
+//  Переменные палитра..............................................................
+$white: rgba(255, 255, 255, 1);
+$blue_basic: rgba(62, 156, 220, 1);
+$blue_1: rgba(66, 169, 237, 1);
+$blue_2: rgba(67, 171, 240, 1);
+$blue_filthy: rgba(40, 102, 144, 1);
+$blue_header: rgba(16, 16, 29, 1);
+$blue_dark_filthy: rgba(39, 39, 51, 1);
+$gray: rgba(111, 109, 123, 1);
+$gray-light: rgba(187, 187, 187, 1);
+$gray-light_footer: rgba(195, 195, 195, 1);
+$footer: rgba(61, 64, 80, 1);
+
+// Адаптивные размеры................................................................
+$tablet: 1024px;
+$mob: 767px;
+
+// Переменные разные................................................................
+$trans: 0.3s;
+
+// Миксины размеров блока........................................................
+
+@mixin font-face($name, $file, $weight: 400, $style: normal) {
+    @font-face {
+        font-family: "#{$name}";
+        src: local("#{$file}"), url("../fonts/#{$file}.woff2") format("woff2"),
+            url("../fonts/#{$file}.woff") format("woff");
+        font-weight: $weight;
+        font-style: $style;
+        font-display: swap;
+    }
+}
+
+@mixin bg($size: "contain", $position: "center") {
+    background-size: #{$size};
+    background-position: #{$position};
+    background-repeat: no-repeat;
+}
+
+@mixin btn_anim($scaleMax: 1.05, $scaleMin: 0.95) {
+    text-wrap: nowrap;
+    position: relative;
+    padding: 1.4rem;
+    min-width: 18.3rem;
+    background: $blue_basic;
+    border-radius: 0.4rem;
+    border: 1px solid $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    @include universal-text(1.3rem, 1.3rem, 400);
+    cursor: pointer;
+    span {
+        color: $white;
+        @include universal-text(1.3rem, 1.3rem, 400);
+        text-transform: uppercase;
+        @media (max-width: $mob) {
+            @include universal-text(1.6rem, 1.6rem, 400);
+        }
+    }
+    &:hover {
+        &::before {
+            animation-name: bounce;
+            animation-timing-function: ease;
+        }
+    }
+    @keyframes bounce {
+        0% {
+            transform: translate(-100%, -25%) rotate(10deg);
+        }
+
+        100% {
+            transform: translate(400%, 0%) rotate(10deg);
+        }
+    }
+    &:before {
+        content: "";
+        width: 30%;
+        height: 200%;
+        position: absolute;
+        top: 0;
+        left: -5px;
+        opacity: 0.5;
+        background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.5) 100%
+        );
+        transform: translate(-100%, -25%) rotate(10deg);
+        animation-duration: 1s;
+        animation-iteration-count: forwards;
+    }
+
+    &:focus {
+        outline: transparent;
+    }
+
+    &:focus-visible {
+        transform: scale(#{$scaleMax}) translateY(-5%);
+    }
+
+    &:active {
+        transform: scale(#{$scaleMin});
+    }
+}
+@mixin btn_anim--white($scaleMax: 1.05, $scaleMin: 0.95) {
+    background: $white;
+    border: 1px solid $gray;
+    span {
+        color: #2a2b30;
+    }
+    &:before {
+        background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(0, 0, 0, 0.2) 100%
+        );
+    }
+}
+
+@mixin input-cust($max-width: 100%) {
+    max-width: #{$max-width};
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid $white;
+    border-radius: 0.3rem;
+    width: 100%;
+    padding: 1.1rem 1rem 1.1rem 1rem;
+    color: $blue_dark_filthy;
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+    transition: $trans;
+    &:focus-visible {
+        outline: none;
+        border: 1px solid rgba(61, 64, 80, 0.85);
+        background: rgba(61, 64, 80, 0.85);
+        color: $white;
+        &::placeholder {
+            color: $white;
+        }
+    }
+    &:hover {
+        box-shadow: 0px 0.4rem 1rem 0px rgba(24, 136, 221, 0.562);
+    }
+}
+
+@mixin input-file() {
+    position: relative;
+    display: inline-block;
+    max-width: 37rem;
+    width: 100%;
+    &:active span {
+        background-color: $gray;
+    }
+    span {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        outline: none;
+        text-decoration: none;
+        vertical-align: middle;
+        color: $white;
+        text-align: center;
+        border-radius: 4px;
+        box-sizing: border-box;
+        border: none;
+        margin: 0;
+        transition: background-color 0.3s;
+        @include input-cust;
+        @include universal-text(1.5rem, 2.2rem, 400);
+        background: $white;
+        border: 2px solid $blue_basic;
+        text-transform: uppercase;
+        padding-left: 2.7rem;
+        &::after {
+            position: absolute;
+            content: "";
+            top: 1rem;
+            left: 8.8rem;
+            width: 1.714rem;
+            height: 2rem;
+            background: url("../img/list-dark.svg") 50% / cover no-repeat;
+            @media (max-width: $tablet) {
+                left: 5.8rem;
+            }
+        }
+    }
+    input[type="file"] {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        display: block;
+        width: 0;
+        height: 0;
+    }
+}
+
+@mixin input-range {
+    input[type="range"] {
+        height: 0.6rem;
+        -webkit-appearance: none;
+        margin: 0;
+        width: 100%;
+    }
+    input[type="range"]:focus {
+        outline: none;
+    }
+    input[type="range"]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 0.6rem;
+        cursor: pointer;
+        animate: 0.2s;
+        box-shadow: none !important;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 5px;
+        border: 1px solid #ffffff;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+        box-shadow: none !important;
+        border: 3px solid $blue_filthy;
+        height: 2.3rem;
+        width: 2.3rem;
+        top: 50%;
+        transform: translateY(-25%);
+        border-radius: 15px;
+        background: $blue_1;
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -3px;
+    }
+    input[type="range"]:focus::-webkit-slider-runnable-track {
+        background: rgba(255, 255, 255, 0.7);
+    }
+    input[type="range"]::-moz-range-track {
+        width: 100%;
+        height: 0.6rem;
+        cursor: pointer;
+        animate: 0.2s;
+        box-shadow: none !important;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 5px;
+        border: 1px solid #ffffff;
+    }
+    input[type="range"]::-moz-range-thumb {
+        box-shadow: none !important;
+        border: 3px solid $blue_filthy;
+        height: 1.5rem;
+        width: 1.5rem;
+        top: 50%;
+        border-radius: 15px;
+        background: $blue_1;
+        cursor: pointer;
+    }
+    input[type="range"]::-ms-track {
+        width: 100%;
+        height: 0.6rem;
+        cursor: pointer;
+        animate: 0.2s;
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+    }
+    input[type="range"]::-ms-fill-lower {
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid #ffffff;
+        border-radius: 15px;
+        box-shadow: none !important;
+    }
+    input[type="range"]::-ms-fill-upper {
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid #ffffff;
+        border-radius: 15px;
+        box-shadow: none !important;
+    }
+    input[type="range"]::-ms-thumb {
+        margin-top: 1px;
+        box-shadow: none !important;
+        border: 3px solid $blue_filthy;
+        height: 2.3rem;
+        width: 2.3rem;
+        top: 50%;
+        transform: translateY(-25%);
+        border-radius: 15px;
+        background: $blue_1;
+        cursor: pointer;
+    }
+    input[type="range"]:focus::-ms-fill-lower {
+        background: rgba(255, 255, 255, 0.7);
+    }
+    input[type="range"]:focus::-ms-fill-upper {
+        background: rgba(255, 255, 255, 0.7);
+    }
+}
+
+@mixin select {
+    position: relative;
+    .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%) rotate(180deg);
+        right: 2.14rem;
+        width: 0.891rem;
+        height: 0.52rem;
+        fill: #000;
+    }
+    .arrow--active {
+        transform: translateY(-50%) rotate(0deg);
+        fill: $white;
+    }
+    .slct {
+        display: block;
+        @include input-cust();
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+    }
+    .slct.active {
+        border-bottom: none;
+        background: rgba(61, 64, 80, 0.85);
+        border: 1px solid rgba(61, 64, 80, 0.85);
+        color: $white;
+        border-radius: 0.3rem 0.3rem 0 0;
+    }
+    .drop {
+        margin: 0;
+        padding: 0;
+        width: 37rem;
+        border: 1px solid #3d4050;
+        border-radius: 0.3rem;
+        border-top: none;
+        display: none;
+        position: absolute;
+        background: #272733;
+        padding: 0 1rem;
+        max-height: 18rem;
+        overflow-y: scroll;
+        z-index: 100;
+        @media (max-width: $tablet) {
+            width: 30.8rem;
+            @media (max-width: $mob) {
+                width: 100%;
+            }
+        }
+        &::-webkit-scrollbar {
+            width: 7px;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: #3d4050;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: $blue_basic;
+            border-radius: 3px;
+        }
+        scrollbar-width: thin;
+        scrollbar-color: $blue_basic #3d4050;
+        li {
+            list-style: none;
+            cursor: pointer;
+            display: block;
+            color: $white;
+            @include universal-text(1.8rem, 3.4rem, 400);
+            &:hover {
+                color: $blue_1;
+            }
+        }
+        .selected {
+            color: $blue_basic;
+        }
+    }
+}
+
+@mixin no-btn($display: "inline-block") {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color: transparent;
+    border-radius: 0;
+    cursor: pointer;
+    appearance: none;
+    display: #{$display};
+}
+
+@mixin transit($tr: 0.24) {
+    transition: all #{$tr}s;
+}
+
+// Миксины текста...........................................................
+
+@mixin h1($font-size: 45px, $line-height: 49.5px) {
+    font-size: #{$font-size};
+    line-height: #{$line-height};
+    letter-spacing: 2%;
+    font-family: "GolosText-Bold";
+    text-align: center;
+    @media (max-width: 1269px) {
+        font-size: calc(#{$font-size} - 4px);
+        line-height: calc(#{$line-height} - 4px);
+        @media (max-width: 767px) {
+            font-size: calc(#{$font-size} - 15px);
+            line-height: calc(#{$line-height} - 15px);
+            @media (max-width: 500px) {
+                font-size: 20px;
+                line-height: 22px;
+            }
+        }
+    }
+}
+
+@mixin h2($font-size: 42px, $line-height: 46.2px) {
+    font-size: #{$font-size};
+    line-height: #{$line-height};
+    letter-spacing: 2%;
+    font-family: "GolosText-Bold";
+    text-align: center;
+    @media (max-width: 1269px) {
+        font-size: calc(#{$font-size} - 4px);
+        line-height: calc(#{$line-height} - 4px);
+        @media (max-width: 767px) {
+            font-size: calc(#{$font-size} - 15px);
+            line-height: calc(#{$line-height} - 15px);
+            @media (max-width: 500px) {
+                font-size: 16px;
+                line-height: 17.6px;
+            }
+        }
+    }
+}
+
+@mixin h3($font-size: 32px, $line-height: 35.2px) {
+    font-size: #{$font-size};
+    line-height: #{$line-height};
+    letter-spacing: 2%;
+    font-family: "GolosText-Bold";
+    text-align: center;
+    @media (max-width: 1269px) {
+        font-size: calc(#{$font-size} - 4px);
+        line-height: calc(#{$line-height} - 4px);
+        @media (max-width: 767px) {
+        }
+    }
+}
+
+@mixin white-yellow() {
+    color: #fff;
+    > span {
+        color: $yellow;
+    }
+}
+
+@mixin universal-text($font-size: 1.6rem, $line-height: 1.8rem, $weight: 400) {
+    font-size: #{$font-size};
+    line-height: #{$line-height};
+    font-weight: #{$weight};
+}

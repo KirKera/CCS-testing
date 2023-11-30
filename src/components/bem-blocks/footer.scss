@@ -1,0 +1,108 @@
+footer {
+    width: 100%;
+    height: fit-content;
+    padding: 3rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $footer;
+    .layout {
+        .footer {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            @media (max-width: $tablet) {
+                flex-direction: column;
+                align-items: center;
+            }
+            .footer__block {
+                display: flex;
+                justify-content: space-between;
+                > span {
+                    @include universal-text(1.3rem, 2rem, 400);
+                    color: $gray-light_footer;
+                }
+                &:nth-child(1) {
+                    width: 34.5rem;
+                    order: 1;
+                    @media (max-width: $tablet) {
+                        width: 100%;
+                        justify-content: center;
+                        order: 3;
+                    }
+                }
+                &:nth-child(2) {
+                    width: 47.6rem;
+                    padding: 0 4.25rem 0 4.05rem;
+                    position: relative;
+                    order: 2;
+                    &::after,
+                    &::before {
+                        content: "";
+                        width: 1px;
+                        height: 1.8rem;
+                        position: absolute;
+                        top: 0.1rem;
+                        background: $gray-light_footer;
+                        @media (max-width: $tablet) {
+                            display: none;
+                        }
+                    }
+                    &::after {
+                        left: 0;
+                    }
+                    &::before {
+                        right: 0;
+                    }
+                    @media (max-width: $tablet) {
+                        order: 1;
+                    }
+                    .footer__item-pay {
+                        display: flex;
+                        align-items: center;
+                        span {
+                            @include universal-text(1.3rem, 1.5rem, 400);
+                            color: $white;
+                            @media (max-width: $mob) {
+                                @include universal-text(1.6rem, 1.8rem, 400);
+                            }
+                        }
+                        svg {
+                            width: 2rem;
+                            height: 2rem;
+                            fill: $blue_basic;
+                            margin-right: 1rem;
+                        }
+                    }
+                }
+                &:nth-child(3) {
+                    width: 34.5rem;
+                    padding-left: 3.53rem;
+                    order: 3;
+                    @media (max-width: $tablet) {
+                        padding: 0;
+                        margin: 1.5rem 0;
+                        order: 2;
+                    }
+                    .footer__item-soc {
+                        display: flex;
+                        align-items: center;
+                        a {
+                            @include universal-text(1.3rem, 1.5rem, 400);
+                            @media (max-width: $mob) {
+                                @include universal-text(1.6rem, 1.8rem, 400);
+                            }
+                            color: $white;
+                        }
+                        svg {
+                            width: 2rem;
+                            height: 2rem;
+                            fill: $blue_basic;
+                            margin-right: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

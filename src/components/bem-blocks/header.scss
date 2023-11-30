@@ -1,0 +1,115 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10rem;
+    background: $blue_header;
+    filter: opacity(90%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    .layout {
+        height: 100%;
+        .header {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .header__logo {
+                font-family: "Raleway";
+                font-weight: 800;
+                text-transform: uppercase;
+                font-size: 2.8rem;
+                line-height: 3.287rem;
+                color: $white;
+                height: fit-content;
+                margin-top: 0.1rem;
+                .color--blue-1 {
+                    color: $blue_1;
+                }
+            }
+            .header__nav {
+                max-width: 43.5rem;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                margin-top: 0.25rem;
+                @media (max-width: $mob) {
+                    display: none;
+                }
+                .header__nav-item {
+                    font-size: 1.3rem;
+                    line-height: 1.35rem;
+                    color: $white;
+                    text-transform: uppercase;
+                }
+                .header__nav-item--active {
+                    color: $blue_2;
+                }
+            }
+            .header__burger-btn {
+                display: none;
+                flex-direction: column;
+                margin-top: 0.5rem;
+                width: fit-content;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+                z-index: 100;
+                @media (max-width: $mob) {
+                    display: flex;
+                }
+                span {
+                    display: block;
+                    width: 4rem;
+                    height: 0.4rem;
+                    margin-bottom: 0.5rem;
+                    background-color: $white;
+                    transition: transform 0.3s, opacity 0.3s;
+                }
+                &.open {
+                    span:nth-child(1) {
+                        transform: rotate(45deg) translate(0.5rem, 0.5rem);
+                    }
+                    span:nth-child(2) {
+                        opacity: 0;
+                    }
+                    span:nth-child(3) {
+                        transform: rotate(-45deg) translate(0.7rem, -0.8rem);
+                    }
+                }
+            }
+            .header__burger-menu {
+                position: fixed;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                top: 10rem;
+                padding: 3rem;
+                right: -100%;
+                width: 100%;
+                height: 60rem;
+                background: #10101d;
+                filter: opacity(99%);
+                transition: right 0.3s;
+                z-index: 99;
+                &.open {
+                    right: 0;
+                }
+                .header__nav {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    a {
+                        margin-top: 1rem;
+                        @include universal-text(2.4rem, 2.8rem, 400);
+                    }
+                }
+            }
+        }
+    }
+}

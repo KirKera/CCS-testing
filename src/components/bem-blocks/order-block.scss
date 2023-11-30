@@ -1,0 +1,99 @@
+.section--order {
+    height: 85rem;
+    background: url("../img/order_fon.jpg") 50% / cover no-repeat;
+    @media (max-width: $tablet) {
+        height: 75rem;
+        background: url("../img/order_fon.jpg") 65% / cover no-repeat;
+        @media (max-width: $mob) {
+            height: fit-content;
+            background: url("../img/order_fon.jpg") 65% / cover no-repeat;
+        }
+    }
+    .layout {
+        @media (max-width: $tablet) {
+            background: rgba($color: $white, $alpha: 0.5);
+        }
+        .order-block {
+            margin-top: 10rem;
+            padding: 10.3rem 0 4rem 0;
+            @media (max-width: $tablet) {
+                padding: 8.3rem 0 2rem 0;
+                @media (max-width: $mob) {
+                    margin-top: 6.5rem;
+                }
+            }
+            .order-block__title {
+                @include universal-text(4.8rem, 5.76rem, 700);
+                text-transform: uppercase;
+                max-width: 78rem;
+                @media (max-width: $tablet) {
+                    max-width: 57rem;
+                }
+            }
+            .order-block__description {
+                display: flex;
+                flex-direction: column;
+                padding: 8rem 0 3rem 0;
+                @media (max-width: $tablet) {
+                    padding: 5rem 0 2rem 0;
+                    @media (max-width: $mob) {
+                    }
+                }
+                .order-block__description-title {
+                    @include universal-text(2.4rem, 2.7rem, 700);
+                    @media (max-width: $mob) {
+                        @include universal-text(3rem, 3.2rem, 700);
+                        max-width: 50rem;
+                    }
+                }
+                .order-block__description-list {
+                    margin: 1rem 0 0 0;
+                    padding: 0;
+                    min-height: 13.2rem;
+                    max-height: 20.2rem;
+                    overflow-y: auto;
+                    @media (max-width: $tablet) {
+                        max-height: 20.2rem;
+                        @media (max-width: $mob) {
+                            max-height: fit-content;
+                        }
+                    }
+
+                    .order-block__description-list-item {
+                        @include universal-text(2rem, 2.4rem, 400);
+                        list-style: none;
+                        padding: 0.25rem 0 0.25rem 2.5rem;
+                        position: relative;
+                        @media (max-width: $mob) {
+                            @include universal-text(2.2rem, 2.8rem, 400);
+                            padding: 0.35rem 0 0.35rem 2.5rem;
+                        }
+                        &:nth-child(1) {
+                            margin-top: 0;
+                        }
+                        &:nth-last-child(1) {
+                            margin-bottom: 0;
+                        }
+                        &::after {
+                            content: "-";
+                            position: absolute;
+                            left: 1rem;
+                            top: 50%;
+                            transform: translateY(-50%);
+                        }
+                    }
+                }
+                .order-block__buttons {
+                    display: flex;
+                    justify-content: flex-start;
+                    margin-top: 3rem;
+                    button {
+                        &:nth-child(1) {
+                            margin-right: 3rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,217 @@
+.section--placing {
+    min-height: 92rem;
+    background: #272733 url("../img/placing_fon.png") 50% / cover no-repeat;
+    @media (max-width: $tablet) {
+        height: 75rem;
+        @media (max-width: $mob) {
+            height: fit-content;
+        }
+    }
+    .layout {
+        .placing-block {
+            padding: 12.1rem 0 15.1rem 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .placing-block__title {
+                @include universal-text(3.6rem, 4.32rem, 700);
+                color: $white;
+                text-transform: uppercase;
+            }
+            > span {
+                @include universal-text(1.8rem, 2.16rem, 400);
+                color: $gray-light;
+                margin: 3rem 0 8rem 0;
+            }
+            .placing-block__steps {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                position: relative;
+                @media (max-width: $mob) {
+                    flex-direction: column;
+                }
+                .placing-block__step-item {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 20.9rem;
+                    @media (max-width: $tablet) {
+                        width: 20rem;
+                        @media (max-width: $mob) {
+                            margin-top: 3rem;
+                        }
+                    }
+                    &:nth-last-of-type(5) {
+                        .placing-block__step-icon {
+                            svg {
+                                width: 3.34rem;
+                                height: 3.34rem;
+                            }
+                        }
+                    }
+                    &:nth-last-of-type(4) {
+                        .placing-block__step-icon {
+                            svg {
+                                width: 3.086rem;
+                                height: 3.086rem;
+                            }
+                        }
+                    }
+                    &:nth-last-of-type(3) {
+                        .placing-block__step-icon {
+                            svg {
+                                width: 3.83rem;
+                                height: 4.15rem;
+                            }
+                        }
+                    }
+                    &:nth-last-of-type(2) {
+                        .placing-block__step-icon {
+                            svg {
+                                width: 3.6rem;
+                                height: 2.8rem;
+                            }
+                        }
+                    }
+                    &:nth-last-of-type(1) {
+                        .placing-block__step-icon {
+                            svg {
+                                width: 3.86rem;
+                                height: 2.6rem;
+                            }
+                        }
+                    }
+
+                    .placing-block__step-icon {
+                        width: 10rem;
+                        height: 10rem;
+                        background: $blue_basic;
+                        border: 0.5rem $blue_filthy solid;
+                        border-radius: 50%;
+                        position: relative;
+                        svg {
+                            position: absolute;
+                            left: 50%;
+                            top: 50%;
+                            transform: translate(-50%, -50%);
+                            fill: $white;
+                        }
+                    }
+                    .placing-block__step-description {
+                        @include universal-text(1.6rem, 1.92rem, 400);
+                        max-width: 18.8rem;
+                        color: $white;
+                        text-align: center;
+                        margin-top: 2rem;
+                    }
+                }
+
+                .placing-block__points {
+                    position: absolute;
+                    left: 16rem;
+                    top: 5rem;
+                    display: flex;
+                    @media (max-width: $mob) {
+                        display: none;
+                    }
+                    @media (max-width: $tablet) {
+                        left: 15rem;
+                    }
+                    .point {
+                        width: 0.6rem;
+                        height: 0.6rem;
+                        background: $white;
+                        border-radius: 50%;
+                        margin: 0 0.7rem;
+                    }
+                    &:nth-child(2) {
+                        left: 36.5rem;
+                        @media (max-width: $tablet) {
+                            left: 35rem;
+                        }
+                    }
+                    &:nth-child(3) {
+                        left: 57.5rem;
+                        @media (max-width: $tablet) {
+                            left: 55rem;
+                        }
+                    }
+                    &:nth-child(4) {
+                        left: 78.5rem;
+                        @media (max-width: $tablet) {
+                            left: 75rem;
+                        }
+                    }
+                }
+            }
+            .placing-block__form {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 8rem;
+                .placing-block__form-top {
+                    width: 100%;
+                    display: grid;
+                    grid-template: 1fr / repeat(3, 1fr);
+                    grid-auto-rows: 1fr;
+                    gap: 3rem;
+                    @media (max-width: $mob) {
+                        grid-template: 1fr / 1fr;
+                    }
+                    input {
+                        width: 100%;
+                    }
+                    a {
+                        &:hover {
+                            color: $gray !important;
+                        }
+                    }
+                }
+                .placing-block__form-bottom {
+                    width: 100%;
+                    display: grid;
+                    grid-template-columns: 2fr 1fr;
+                    grid-template-rows: 1fr;
+                    grid-auto-rows: 1fr;
+                    gap: 3rem;
+                    margin-top: 3rem;
+                    @media (max-width: $mob) {
+                        grid-template: 1fr / 1fr;
+                        .input__file {
+                            margin: 0 auto;
+                        }
+                    }
+                    .input__range {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        width: 77.1rem;
+                        @media (max-width: $tablet) {
+                            width: 64.6rem;
+                            @media (max-width: $mob) {
+                                width: 100%;
+                            }
+                        }
+                        .input__range-top {
+                            width: 100%;
+                            display: flex;
+                            justify-content: space-between;
+                            span {
+                                @include universal-text(1.8rem, 2.16rem, 400);
+                                color: $white;
+                            }
+                        }
+                    }
+                }
+                > button {
+                    max-width: 37rem;
+                    width: 100%;
+                    margin-top: 5.5rem;
+                }
+            }
+        }
+    }
+}

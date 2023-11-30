@@ -1,0 +1,156 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.flex {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.--just-space {
+    justify-content: space-between;
+}
+
+.--just-center {
+    justify-content: center;
+}
+
+.--just-end {
+    justify-content: flex-end;
+}
+
+.--align-str {
+    align-items: stretch;
+}
+
+.--align-center {
+    align-items: center;
+}
+
+.--align-end {
+    align-items: flex-end;
+}
+
+.--dir-col {
+    flex-direction: column;
+}
+
+html {
+    font-size: calc(100vw / 1920 * 10);
+    @media (max-width: $tablet) {
+        font-size: calc(100vw / 1024 * 10);
+        @media (max-width: $mob) {
+            font-size: calc(100vw / 767 * 10);
+            @media (max-width: 500px) {
+                font-size: calc(100vw / 500 * 10);
+            }
+        }
+    }
+}
+
+html,
+body {
+    height: 100%;
+    position: relative;
+}
+
+body {
+    font-size: 1rem;
+    font-family: "Lato", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: fit-content;
+    main {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+    }
+}
+
+a,
+button,
+select {
+    color: inherit;
+}
+
+select {
+    option {
+        font-size: 1.8rem;
+        line-height: 3.4rem;
+    }
+}
+
+a {
+    text-decoration: none;
+    transition: $trans;
+    &:hover {
+        color: $blue_basic !important;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+// Адаптив....................................................................................
+
+// ........................................................................
+
+// глобальные стили...........................................
+
+.section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+}
+
+.layout {
+    max-width: 121.2rem;
+    padding: 0 2rem;
+    width: 100%;
+}
+
+.button {
+    @include btn_anim;
+}
+
+.button--white {
+    @include btn_anim--white;
+}
+
+.button--big {
+    padding: 1.64rem;
+}
+
+.input {
+    @include input-cust;
+}
+
+.input__file {
+    @include input-file;
+}
+
+.input__range {
+    @include input-range;
+}
+
+.select {
+    @include select;
+}
+
+.color--blue-basic {
+    color: $blue_basic;
+}
