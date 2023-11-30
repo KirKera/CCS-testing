@@ -146,6 +146,12 @@ h6 {
 .input__range {
     @include input-range;
 }
+.invalid {
+    border: 1px red solid;
+    background-color: rgba($color: #e09292, $alpha: 0.1);
+    color: $white;
+    position: relative;
+}
 
 .select {
     @include select;

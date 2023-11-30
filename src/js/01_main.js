@@ -89,3 +89,29 @@ $(function () {
         $steps.prepend(pointsHtml);
     }
 });
+
+// проверка инпутов
+
+$(function () {
+    $('input[name="name"]').on("input", function () {
+        let name = $(this).val();
+        let nameRegex = /^[а-яА-Я\s]+$/;
+        if (nameRegex.test(name)) {
+            $(this).removeClass("invalid").addClass("valid");
+        } else {
+            $(this).removeClass("valid").addClass("invalid");
+        }
+    });
+});
+
+$(function () {
+    $('input[name="e-mail"]').on("input", function () {
+        let email = $(this).val();
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailRegex.test(email)) {
+            $(this).removeClass("invalid").addClass("valid");
+        } else {
+            $(this).removeClass("valid").addClass("invalid");
+        }
+    });
+});
